@@ -1,0 +1,120 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:'Global Sans Serif',sans-serif;
+}
+body{
+    background-color:#EEE;
+    display:flex;
+    flex-direction:column;
+    min-height:100px;
+}
+header {
+    background-color: #131A26;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #8A4FFF;
+}
+header h1{
+    color:#FFF;
+    font-size:40px;
+    text-transform:uppercase;
+    text-shadow:-4px, 1px, #8A4FFF;
+}
+main {
+    margin-top:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0%;
+}
+.board{
+    display:grid;
+    grid-template-columns: repeat(3,auto);
+}
+.cell {
+    position: relative;
+    border: 2px solid #131A26;
+    width:100px;
+    padding-top:100%;
+    cursor:pointer;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top:none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7){
+    border-left:none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9){
+    border-right:none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom:none;
+}
+
+.cell.x,
+.cell.o{
+    cursor:not-allowed;
+}
+
+.cell.x::after,
+.cell.x::before,
+.board.turn-x .cell:not(.x):not(.o):hover::after,
+.board.turn-x .cell:not(.x):not(.o):hover::before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:10px;
+    height:90px;
+    background-color:#131A26;
+    border-radius:99px;
+}
+
+.cell.x::before,
+.board.turn-x .cell:not(.x):not(.o):hover::before{
+    transform:translate(-50%,-50%) rotate(-45deg);
+}
+.cell.x::after,
+.board.turn-x .cell:not(.x):not(.o):hover::after{
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.cell.o::before,
+.board.turn-o .cell:not(.x):not(.o):hover::before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:60px;
+    height:60px;
+    border:10px solid #131A26  ;
+    border-radius:50%;
+}
+
+.board.turn-x .cell:not(.x):not(.o):hover::after,
+.board.turn-x .cell:not(.x):not(.o):hover::before {
+    background-color: #ff0000;
+}
+
+.board.turn-o .cell:not(.x):not(.o):hover::before {
+    border-color: #ff0000;
+}
